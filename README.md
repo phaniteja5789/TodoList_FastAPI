@@ -1,6 +1,12 @@
 # TodoList_FastAPI
 This repository is an sample ToDoList application developed using **FastAPI, HTML, JavaScript. **
 
+Installed Modules for this code :
+
+1.) pip install "FastApi[all]" ==> To Support FASTAPI calls
+2.) pip install "python-multipart" ==> To handle FORM Data which will come as MultiPart
+
+
 The startup screen will be as below screen.
 <img width="290" alt="image" src="https://github.com/phaniteja5789/TodoList_FastAPI/assets/36558484/2d54041d-beda-431f-a85b-1a1f4906881f">
 
