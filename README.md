@@ -3,6 +3,9 @@ This repository is an sample ToDoList application developed using **FastAPI, HTM
 
 Installed Modules for this code :
 
+**FastAPI,Python-multipart**
+
+
 1.) pip install "FastApi[all]" ==> To Support FASTAPI calls
 2.) pip install "python-multipart" ==> To handle FORM Data which will come as MultiPart
 
