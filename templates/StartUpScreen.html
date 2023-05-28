@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        #linethroughTask
+        {
+            text-decoration: line-through
+        }
+    </style>
+<body>
+   
+<div class="ToDoListDiv">	
+    <div class="TaskDiv">
+        <form id="taskData" method="post" action="/">
+            <input type="text" id="taskName" name="taskName"/>
+            <button type="submit">+</button>
+        </form>
+    </div>
+    <table id="tasksToBeCompleted">
+        {% for task in  todoTaskList %}
+            <tr>
+                <td>
+                    {% if task.taskFlag==1 %}
+                        <p id="linethroughTask">{{ task.taskName }} </p>
+                    {% else %}
+                        <p>{{ task.taskName }} </p>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+<script>
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  var cells=document.querySelectorAll('#tasksToBeCompleted td');
+  for(var i=0;i<cells.length;i++)
+  {
+        cells[i].addEventListener("contextmenu",function(){
+            removeTask(i);
+        });
+  }
+  var table = document.getElementById("tasksToBeCompleted");
+    if (table != null) {
+        for (var i = 0; i < table.rows.length; i++) {
+            for (var j = 0; j < table.rows[i].cells.length; j++)
+            table.rows[i].cells[j].onclick = function () {
+                completedTask(this,i);
+            };
+        }
+    }
+
+    function completedTask(tableCell,taskNumber) {
+        fetch("/completedTask",{
+            method:"post",
+            body:JSON.stringify({
+                "taskName":tableCell.innerHTML,
+                "index":taskNumber-1
+            })
+        })
+    }
+
+    function removeTask(taskNumber)
+    {
+        fetch("/removeTask",{
+            method:"post",
+            body:JSON.stringify({
+                "index":taskNumber-1
+            })
+        })
+    }
+
+</script>
+</body>
+</html>
